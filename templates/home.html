@@ -1,0 +1,5 @@
+this is the home page!
+{% for contact in contacts.all %}
+<p>{{contact.first_name}}</p>
+<p>{{contact.phone_number}}</p>
+{% endfor %}
