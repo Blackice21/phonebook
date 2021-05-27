@@ -3,3 +3,11 @@ this is the home page!
 <p>{{contact.first_name}}</p>
 <p>{{contact.phone_number}}</p>
 {% endfor %}
+<h4>{{message}}</h4>
+
+{% if request.user.is_authenticated %}
+<form action="{% url 'logoutform' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">logout</button>
+</form>
+{% endif %}

@@ -1,0 +1,6 @@
+<form action="{% url 'loginform' %}" method="POST">
+    {% csrf_token %}
+    {{error}}
+    {{form}}
+    <button type="submit">submit</button>
+</form>
