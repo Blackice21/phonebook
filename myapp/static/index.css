@@ -58,6 +58,10 @@
     background-repeat: no-repeat;
 }
 
+.del:hover{
+    color: red;
+}
+
 @media(max-width: 1350px) {
     .card-container{
         flex-direction: column;

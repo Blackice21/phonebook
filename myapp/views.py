@@ -20,7 +20,27 @@ def create_contact(request):
 
 def detail_contact(request, pk):
     contact = get_object_or_404(Contacts, pk=pk)
-    return render(request, 'crud/detail.html', {'contact': contact})     
+    return render(request, 'crud/detail.html', {'contact': contact})
+
+def update_contact(request, pk):
+    contact = get_object_or_404(Contacts, pk=pk)
+
+    if request.method == 'GET':
+        form = Contactform(instance=contact)
+        return render(request, 'crud/update.html', {'contact':contact, 'form':form})
+    else:
+        form = Contactform(request.POST, request.FILES, instance=contact)
+        form.save()
+        return redirect('home')
+
+def delete_contact(request, pk):
+    if request.method == 'GET':
+        contact = get_object_or_404(Contacts, pk=pk)
+        return render(request, 'crud/delete.html', {'contact': contact})
+    else:
+        contact = get_object_or_404(Contacts, pk=pk)
+        contact.delete()
+        return redirect('home')
 
 @login_required
 def home(request):

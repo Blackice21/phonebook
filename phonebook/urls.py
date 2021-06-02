@@ -27,6 +27,8 @@ urlpatterns = [
     path('logout/', views.logoutuser, name='logoutform'),
     path('create/', views.create_contact, name='create'),
     path('detail/<int:pk>/', views.detail_contact, name='detail'),
+    path('update/<int:pk>/', views.update_contact, name='update'),
+    path('delete/<int:pk>/', views.delete_contact, name='delete'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

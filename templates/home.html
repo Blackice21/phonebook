@@ -9,11 +9,13 @@ this is the home page!
     <div class="card-base">
         <img  class="the-img" src="{{ contact.image.url }}">
         <div class="the-btn">
-          <h4><a href="{% url 'detail' pk=contact.pk %}">{{contact.first_name}} {{contact.last_name}}</a></h4>
+          <h4><a href="{% url 'detail' pk=contact.pk %}">{{contact.first_name|title}} {{contact.last_name|title }}</a></h4>
         </div>
         <div class="content">
           <h3>phone number below</h3>
           <h3>{{contact.phone_number}}</h3>
+          <h4><a href="{% url 'update' pk=contact.pk %}">Edit here!</a></h4>
+          <h4><a class="del" href="{% url 'delete' pk=contact.pk %}">delete here!</a></h4>
         </div>
     </div>
 {% endfor %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}home{% endblock title %}
+{% block content %}
+
+<form action="{% url 'update' pk=contact.pk %}" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">submit</button>
+</form>
+{% endblock %}
