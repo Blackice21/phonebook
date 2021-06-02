@@ -1,6 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}home{% endblock title %}
+{% block content %}
+
 <form action="{% url 'loginform' %}" method="POST">
     {% csrf_token %}
     {{error}}
-    {{form}}
+    {{form.as_p}}
     <button type="submit">submit</button>
 </form>
+{% endblock %}

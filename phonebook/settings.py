@@ -119,7 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIR = os.path.join(BASE_DIR,"phonebook/static/")
+STATICFILES_DIRs = os.path.join(BASE_DIR,"myapp/static/")
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # media files
