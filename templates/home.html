@@ -2,8 +2,9 @@
 {% block title %}home{% endblock title %}
 {% block content %}
 
-this is the home page!
-<a href="{% url 'create' %}"><button class="btn-btn-primary">create contact!</button></a>
+{% if user.is_authenticated %}
+<h2 class="text-center">this is the home page!</h2>
+<a  style="display: flex; justify-content: center;" href="{% url 'create' %}"><button class="btn btn-primary">create contact!</button></a>
 <div class="card-container">
 {% for contact in contacts.all %}
     <div class="card-base">
@@ -22,15 +23,8 @@ this is the home page!
 </div>
 
 <h4>{{message}}</h4>
-{% if not request.user.is_authenticated %}
-<a href="{% url 'loginform' %}"><button class="btn btn-primary" >login</button></a>
+{% else %}
+<h1 class="text-center">Create an account or login!</h1>
 {% endif %}
 
-
-{% if request.user.is_authenticated %}
-<form action="{% url 'logoutform' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-warning">logout</button>
-</form>
-{% endif %}
 {% endblock %}

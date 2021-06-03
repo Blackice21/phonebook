@@ -1,5 +1,6 @@
 from django.http import request
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import AnonymousUser
 from .models import Contacts
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
@@ -8,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import Contactform
 
 # Create your views here.
+
 def create_contact(request):
     if request.method == 'GET':
         form = Contactform(initial={'user': request.user})
@@ -42,10 +44,14 @@ def delete_contact(request, pk):
         contact.delete()
         return redirect('home')
 
-@login_required
+
 def home(request):
-    contacts = Contacts.objects.filter(user_id=request.user)
-    return render(request,"home.html",{'contacts':contacts})
+    if request.user != AnonymousUser():
+      contacts = Contacts.objects.filter(user_id=request.user)
+      return render(request,"home.html",{'contacts':contacts})
+    else:
+        return render(request,"home.html")
+   
 
 def signupuser(request):
     if request.method == 'GET':
@@ -70,6 +76,7 @@ def loginuser(request):
             return redirect('home')
         else:
             return render(request,'loginform.html', {'form':authform, 'error':'invalid login try again'})
+
 
 def logoutuser(request):
     logout(request)
