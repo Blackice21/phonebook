@@ -11,6 +11,7 @@ class Contacts(models.Model):
     last_name = models.CharField(max_length=100)
     image = models.ImageField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    relation = models.CharField(default='no relation', max_length=100)
 
     def __str__(self):
         return self.first_name+' '+self.last_name

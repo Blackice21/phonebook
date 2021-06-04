@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}home{% endblock title %}
 {% block content %}
 
+<div style="display: flex; justify-content: center;">
 <form action="{% url 'update' pk=contact.pk %}" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">submit</button>
+    {{form|crispy}}
+    <button style="margin-top:7px;" class="btn btn-primary" type="submit">submit</button>
 </form>
+<div>
 {% endblock %}

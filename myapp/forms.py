@@ -5,5 +5,5 @@ from .models import Contacts
 class Contactform(ModelForm):
     class Meta:
         model = Contacts
-        fields = ['first_name', 'last_name', 'phone_number', 'image', 'user']
+        fields = ['first_name', 'last_name', 'relation', 'phone_number', 'image', 'user']
         widgets = {'user': forms.HiddenInput()}

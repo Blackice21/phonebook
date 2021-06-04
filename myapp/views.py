@@ -10,6 +10,15 @@ from .forms import Contactform
 
 # Create your views here.
 
+def search(request):
+        s_info = request.GET['search_info']
+        if s_info:
+            contacts = Contacts.objects.all().filter(first_name__icontains=s_info)
+            return render(request, 'search.html', {'contacts':contacts})
+        else:
+            return redirect('home')
+    
+
 def create_contact(request):
     if request.method == 'GET':
         form = Contactform(initial={'user': request.user})
